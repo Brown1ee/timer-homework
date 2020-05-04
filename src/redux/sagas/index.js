@@ -1,5 +1,4 @@
 import {
-  all,
   takeLatest,
   put,
   call,
@@ -8,15 +7,15 @@ import {
   select,
   delay,
 } from "redux-saga/effects";
-import * as types from "../actionTypes";
-import * as actions from "../actions";
+import { STOP_TIMER, RESTART_TIMER, ASYNC_START_TIMER } from "../actionTypes";
+import { startTimer, incrementTimer } from "../actions";
 
 function* startTimerSaga() {
   const state = yield select();
 
-  yield put(actions.startTimer());
+  yield put(startTimer());
   while (state.started) {
-    yield put(actions.incrementTimer());
+    yield put(incrementTimer());
     yield delay(1000);
   }
 }
@@ -24,14 +23,10 @@ function* startTimerSaga() {
 function* startPullTimer() {
   yield race({
     task: call(startTimerSaga),
-    cancel: take([types.STOP_TIMER, types.RESTART_TIMER]),
+    cancel: take([STOP_TIMER, RESTART_TIMER]),
   });
 }
 
-function* asyncStartTimer() {
-  yield takeLatest(types.ASYNC_START_TIMER, startPullTimer);
-}
-
-export default function* timerRoot() {
-  yield all([asyncStartTimer()]);
+export default function* asyncStartTimer() {
+  yield takeLatest(ASYNC_START_TIMER, startPullTimer);
 }

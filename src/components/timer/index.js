@@ -1,37 +1,24 @@
 import React from "react";
 import { asyncTimer, stopTimer, restartTimer } from "../../redux/actions";
-import { connect } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { Button } from "antd";
 
-const Timer = ({
-  asyncTimer,
-  curentTime,
-  stopTimer,
-  restartTimer,
-  started,
-}) => {
+const Timer = () => {
+  const dispatch = useDispatch();
+  const curentTime = useSelector((state) => state.curentTime);
+  const started = useSelector((state) => state.started);
+
   return (
     <div>
       <h1 className="text-color-grey">Timer</h1>
       <h2 className="text-color-grey">{curentTime}</h2>
-      <Button onClick={asyncTimer} disabled={started}>
+      <Button onClick={() => dispatch(asyncTimer())} disabled={started}>
         Start
       </Button>
-      <Button onClick={stopTimer}>Stop</Button>
-      <Button onClick={restartTimer}>Restart</Button>
+      <Button onClick={() => dispatch(stopTimer())}>Stop</Button>
+      <Button onClick={() => dispatch(restartTimer())}>Restart</Button>
     </div>
   );
 };
 
-const mapStateToProps = (state) => {
-  return {
-    curentTime: state.curentTime,
-    started: state.started,
-  };
-};
-
-export default connect(mapStateToProps, {
-  asyncTimer,
-  stopTimer,
-  restartTimer,
-})(Timer);
+export default Timer;

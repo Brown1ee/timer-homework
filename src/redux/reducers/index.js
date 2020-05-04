@@ -13,8 +13,7 @@ const initialState = {
 export default function counter(state = initialState, action) {
   switch (action.type) {
     case INCREMENT_TIMER:
-      state.curentTime++;
-      return { ...state };
+      return { ...state, curentTime: state.curentTime + 1 };
     case START_TIMER:
       state.started = true;
       return { ...state };

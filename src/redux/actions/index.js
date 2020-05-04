@@ -4,34 +4,14 @@ import {
   START_TIMER,
   STOP_TIMER,
   RESTART_TIMER,
-} from "../actionTypes/index.js";
+} from "../actionTypes";
 
-export const incrementTimer = () => {
-  return {
-    type: INCREMENT_TIMER,
-  };
-};
+export const incrementTimer = () => ({ type: INCREMENT_TIMER });
 
-export const asyncTimer = () => {
-  return {
-    type: ASYNC_START_TIMER,
-  };
-};
+export const asyncTimer = () => ({ type: ASYNC_START_TIMER });
 
-export const startTimer = () => {
-  return {
-    type: START_TIMER,
-  };
-};
+export const startTimer = () => ({ type: START_TIMER });
 
-export const stopTimer = () => {
-  return {
-    type: STOP_TIMER,
-  };
-};
+export const stopTimer = () => ({ type: STOP_TIMER });
 
-export const restartTimer = () => {
-  return {
-    type: RESTART_TIMER,
-  };
-};
+export const restartTimer = () => ({ type: RESTART_TIMER });
