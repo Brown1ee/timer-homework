@@ -6,11 +6,10 @@ import {
   race,
   take,
   select,
+  delay,
 } from "redux-saga/effects";
 import * as types from "../actionTypes";
 import * as actions from "../actions";
-
-const delay = (ms) => new Promise((res) => setTimeout(res, ms));
 
 function* startTimerSaga() {
   const state = yield select();
