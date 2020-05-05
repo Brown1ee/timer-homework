@@ -11,9 +11,8 @@ import { STOP_TIMER, RESTART_TIMER, ASYNC_START_TIMER } from "../actionTypes";
 import { startTimer, incrementTimer } from "../actions";
 
 function* startTimerSaga() {
-  const state = yield select();
-
   yield put(startTimer());
+  const state = yield select();
   while (state.started) {
     yield put(incrementTimer());
     yield delay(1000);

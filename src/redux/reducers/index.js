@@ -15,15 +15,11 @@ export default function counter(state = initialState, action) {
     case INCREMENT_TIMER:
       return { ...state, curentTime: state.curentTime + 1 };
     case START_TIMER:
-      state.started = true;
-      return { ...state };
+      return { ...state, started: true };
     case STOP_TIMER:
-      state.started = false;
-      return { ...state };
+      return { ...state, started: false };
     case RESTART_TIMER:
-      state.started = false;
-      state.curentTime = 0;
-      return { ...state };
+      return { ...state, started: false, curentTime: 0 };
     default:
       return state;
   }
