@@ -1,0 +1,5 @@
+export const INCREMENT_TIMER = "INCREMENT_TIMER";
+export const ASYNC_START_TIMER = "ASYNC_START_TIMER";
+export const STOP_TIMER = "STOP_TIMER";
+export const START_TIMER = "START_TIMER";
+export const RESTART_TIMER = "RESTART_TIMER";
